@@ -25,7 +25,6 @@ public class StringService {
             return true;
         else
             return false;
-        
     }
 
 

@@ -25,7 +25,7 @@ public class MemberService {
         return members;
     }
 
-    //멤버 반환
+    //멤버한명 반환
     public Member getMemberById(int memberId) {
         for(Member member : members){
             if(member.getId() == memberId) {
@@ -34,7 +34,6 @@ public class MemberService {
         }
         return null;
     }
-
 
     //멤버 수정
     public boolean putMemberById(int memberId, Member puttedMember) {
@@ -50,7 +49,6 @@ public class MemberService {
             }
         return false;
     }
-
 
     //멤버 삭제
     public Member deleteMemberById(int memberId) {

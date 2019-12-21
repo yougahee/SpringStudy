@@ -18,9 +18,7 @@ public class BookController {
 
     //도서추가
     @PostMapping
-    public boolean addBook(@RequestBody Book book){
-        return bookService.addBook(book);
-    }
+    public boolean addBook(@RequestBody Book book){ return bookService.addBook(book); }
 
     //모든도서조회
     @GetMapping
@@ -31,9 +29,8 @@ public class BookController {
     //도서조회
     @GetMapping("/{bookId}")
     public Book getBook(@PathVariable("bookId") int bookId) {
-        return bookService.getBook(bookId);
+        return bookService.getBook(bookId,0);
     }
-
 
     //도서수정
     @PutMapping("/{bookId}")

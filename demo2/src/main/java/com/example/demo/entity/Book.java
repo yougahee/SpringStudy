@@ -36,7 +36,6 @@ public class Book {
         return author;
     }
 
-    public boolean isOut() {
-        return isOut;
+    public boolean isOut() { return isOut;
     }
 }

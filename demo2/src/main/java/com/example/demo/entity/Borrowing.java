@@ -1,50 +1,70 @@
 package com.example.demo.entity;
 
+import java.util.Date;
+
 public class Borrowing {
 
     private int id;
-    private String email;
-    private String password;
-    private String name;
-    private String phoneNumber;
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
+    private Book book;
+    private Member member;
+    private Date startTime;
+    private Date expireTime;
+    private Date returnTime;
 
     public int getId() {
         return id;
     }
 
-    public String getEmail() {
-        return email;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getPassword() {
-        return password;
+    public Book getBook() {
+        return book;
     }
 
-    public String getName() {
-        return name;
+    public void setBook(Book book) {
+        this.book = book;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public Member getMember() {
+        return member;
     }
+
+    public void setMember(Member member) {
+        this.member = member;
+    }
+
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public Date getExpireTime() {
+        return expireTime;
+    }
+
+    public void setExpireTime(Date expireTime) {
+        this.expireTime = expireTime;
+    }
+
+    public Date getReturnTime() {
+        return returnTime;
+    }
+
+    public void setReturnTime(Date returnTime) {
+        this.returnTime = returnTime;
+    }
+
+
+
+
+
+
+
+
+
 }

@@ -48,7 +48,7 @@ public class BorrowingService {
             }
             return addBorrowings;
         }
-        //bookId만 있을 경우 --> 안됨
+        //bookId만 있을 경우
         else if (memberId == 0 && bookId > 0) {
             addBorrowings.clear();
             for (Borrowing borrowing : borrowings) {
@@ -58,7 +58,7 @@ public class BorrowingService {
             }
             return addBorrowings;
         }
-        //둘다 있을 경우 --> 안됨
+        //둘다 있을 경우 
         else if (memberId > 0 && bookId > 0) {
             addBorrowings.clear();
             for (Borrowing borrowing : borrowings) {

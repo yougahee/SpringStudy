@@ -14,6 +14,7 @@ import java.util.List;
 public class BorrowingService {
 
     private List<Borrowing> borrowings = new ArrayList<>();
+    private List<Borrowing> addBorrowings = new ArrayList<>();
     Date today = new Date();
     Date expireday = new Date();
     Calendar cal = Calendar.getInstance();
@@ -39,34 +40,39 @@ public class BorrowingService {
         //memberId만 있을 경우 -> 전체적으로 borrowings, 즉 List가 반환값이면 List전체 담겨져 있는 것을 반환하는 듯하다
         //어떻게 해당하는 것들만 반환할 수 있을까..?
         if (memberId > 0 && bookId == 0) {
+            addBorrowings.clear();
             for (Borrowing borrowing : borrowings) {
                 if (borrowing.getMember().getId() == memberId) {
-                    return borrowings;
+                    addBorrowings.add(borrowing);
                 }
             }
+            return addBorrowings;
         }
         //bookId만 있을 경우 --> 안됨
         else if (memberId == 0 && bookId > 0) {
+            addBorrowings.clear();
             for (Borrowing borrowing : borrowings) {
                 if (borrowing.getBook().getId() == bookId) {
-                    return borrowings;
+                    addBorrowings.add(borrowing);
                 }
             }
+            return addBorrowings;
         }
         //둘다 있을 경우 --> 안됨
         else if (memberId > 0 && bookId > 0) {
+            addBorrowings.clear();
             for (Borrowing borrowing : borrowings) {
                 if (borrowing.getMember().getId() == memberId && borrowing.getBook().getId() == bookId) {
-                    return borrowings;
+                    addBorrowings.add(borrowing);
                 }
             }
+            return addBorrowings;
         }
         //아니면 전체 대출내역 조회
         //여기 안나오는 듯
         else {
             return borrowings;
         }
-        return null;
     }
 
     //borrowingId를 가진 대출내역 조회

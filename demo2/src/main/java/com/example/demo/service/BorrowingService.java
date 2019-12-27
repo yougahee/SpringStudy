@@ -1,8 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.entity.Book;
 import com.example.demo.entity.Borrowing;
-import com.example.demo.entity.Member;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -16,7 +14,7 @@ public class BorrowingService {
     private List<Borrowing> borrowings = new ArrayList<>();
     private List<Borrowing> addBorrowings = new ArrayList<>();
     Date today = new Date();
-    Date expireday = new Date();
+    Date expiryday = new Date();
     Calendar cal = Calendar.getInstance();
 
     private int autoIncrement = 1;
@@ -36,9 +34,8 @@ public class BorrowingService {
     ex) GET /api/borrowings 		=> 전체 대출내역 조회*/
 
     //대출내역 조회 (memberId, bookId는 옵션! 둘 다 없으면 전체 대출내역 조회)
-    public List<Borrowing> getallBorrowingOption(int memberId, int bookId) {
-        //memberId만 있을 경우 -> 전체적으로 borrowings, 즉 List가 반환값이면 List전체 담겨져 있는 것을 반환하는 듯하다
-        //어떻게 해당하는 것들만 반환할 수 있을까..?
+    public List<Borrowing> getAllBorrowingOption(int memberId, int bookId) {
+        //memberId만 있을 경우
         if (memberId > 0 && bookId == 0) {
             addBorrowings.clear();
             for (Borrowing borrowing : borrowings) {
@@ -58,7 +55,7 @@ public class BorrowingService {
             }
             return addBorrowings;
         }
-        //둘다 있을 경우 
+        //둘다 있을 경우
         else if (memberId > 0 && bookId > 0) {
             addBorrowings.clear();
             for (Borrowing borrowing : borrowings) {
@@ -69,7 +66,6 @@ public class BorrowingService {
             return addBorrowings;
         }
         //아니면 전체 대출내역 조회
-        //여기 안나오는 듯
         else {
             return borrowings;
         }
@@ -94,9 +90,8 @@ public class BorrowingService {
         if (memberService.getMemberById(memberId) != null && bookService.getBook(bookId,1) != null) {
             Borrowing borrowing = new Borrowing();
             borrowing.setId(autoIncrement++);
-            //isOut true로 바꿈
-            //잘 모르겠음 이거는!
-            //borrowing.setBook().setOut(true);
+            //isOut true로 바꿈 --> ????????이거 맞나???????
+            borrowing.getBook().setOut(true);
             //Member
             borrowing.setMember(memberService.getMemberById(memberId));
             //Book
@@ -104,10 +99,10 @@ public class BorrowingService {
             //대출기간 7일##바꾸기!##
             borrowing.setStartTime(today);
             cal.add(Calendar.DAY_OF_MONTH, 7);
-            expireday = cal.getTime();
-            borrowing.setExpireTime(expireday);
+            expiryday = cal.getTime();
+            borrowing.setExpireTime(expiryday);
             borrowing.setReturnTime(null);
-            //returnday는 아직 null
+            //return day는 아직 null QQ 여기서 지정을 안해주면 기본 null값으로 들어가는 건가?
             //Q 이것도 하는 게 맞는건가?
             borrowings.add(borrowing);
 
@@ -137,8 +132,8 @@ public class BorrowingService {
             if (borrowing.getBook().getId() == bookId) {
                 //expiryDate를 7일 연장..
                 cal.add(Calendar.DAY_OF_MONTH, 7);
-                expireday = cal.getTime();
-                borrowing.setExpireTime(expireday);
+                expiryday = cal.getTime();
+                borrowing.setExpireTime(expiryday);
                 return true;
             }
         }

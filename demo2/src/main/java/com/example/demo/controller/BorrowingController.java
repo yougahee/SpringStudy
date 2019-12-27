@@ -1,11 +1,9 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.Book;
 import com.example.demo.entity.Borrowing;
 import com.example.demo.service.BorrowingService;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
@@ -20,9 +18,9 @@ public class BorrowingController {
 
     //대출내역 조회
     @GetMapping
-    public List<Borrowing> getallBorrowingOption(@RequestParam(value = "memberId", required = false, defaultValue = "0") int memberId,
+    public List<Borrowing> getAllBorrowingOption(@RequestParam(value = "memberId", required = false, defaultValue = "0") int memberId,
                                                  @RequestParam(value = "bookId", required = false, defaultValue = "0") int bookId){
-      return borrowingService.getallBorrowingOption(memberId, bookId);
+      return borrowingService.getAllBorrowingOption(memberId, bookId);
     }
 
     //borrowingId를 가진 대출내역 조회

@@ -87,23 +87,24 @@ public class BorrowingService {
 
     //도서대출
     public boolean postBorrowingBooks(int memberId, int bookId) {
-        if (memberService.getMemberById(memberId) != null && bookService.getBook(bookId,1) != null) {
+        if (memberService.getMemberById(memberId) != null && bookService.getBookById(bookId) != null) {
             Borrowing borrowing = new Borrowing();
             borrowing.setId(autoIncrement++);
-            //isOut true로 바꿈 --> ????????이거 맞나???????
-            borrowing.getBook().setOut(true);
+            //isOut true로 바꿈 ******검사검사검사*********
+            bookService.getBookById(bookId).setOut(true);
             //Member
             borrowing.setMember(memberService.getMemberById(memberId));
             //Book
-            borrowing.setBook(bookService.getBook(bookId,1));
-            //대출기간 7일##바꾸기!##
+            borrowing.setBook(bookService.getBookById(bookId));
+            //대출기간 7일##바꾸기!##******검사검사*********
             borrowing.setStartTime(today);
             cal.add(Calendar.DAY_OF_MONTH, 7);
             expiryday = cal.getTime();
             borrowing.setExpireTime(expiryday);
             borrowing.setReturnTime(null);
             //return day는 아직 null QQ 여기서 지정을 안해주면 기본 null값으로 들어가는 건가?
-            //Q 이것도 하는 게 맞는건가?
+
+            //Q 이것도 하는 게 맞는건가? *******검사검사검사********
             borrowings.add(borrowing);
 
             return true;

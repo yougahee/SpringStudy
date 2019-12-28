@@ -26,12 +26,12 @@ public class MemberController {
     //멤버 조회
     @GetMapping
     public List<Member> getAllMembers(){
-        return memberService.getallMembers();
+        return memberService.getAllMembers();
     }
 
     //id에 맞는 멤버 조회 member가져오기
     @GetMapping("/{memberId}")
-    public Member getAllMembers(@PathVariable("memberId") int memberId) {
+    public Member getMemberById(@PathVariable("memberId") int memberId) {
         return memberService.getMemberById(memberId);
     }
 

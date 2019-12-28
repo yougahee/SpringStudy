@@ -21,7 +21,7 @@ public class MemberService {
     }
 
     //멤버 조회
-    public List<Member> getallMembers() {
+    public List<Member> getAllMembers() {
         return members;
     }
 

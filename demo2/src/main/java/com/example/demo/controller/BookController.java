@@ -23,13 +23,13 @@ public class BookController {
     //모든도서조회
     @GetMapping
     public List<Book> getBook() {
-        return bookService.getallBook();
+        return bookService.getAllBook();
     }
 
     //도서조회
     @GetMapping("/{bookId}")
     public Book getBook(@PathVariable("bookId") int bookId) {
-        return bookService.getBook(bookId,0);
+        return bookService.getBookById(bookId);
     }
 
     //도서수정
@@ -39,7 +39,7 @@ public class BookController {
 }
     //도서삭제
     @DeleteMapping("/{bookId}")
-    public boolean delete(@PathVariable("bookId") int bookId) {
+    public boolean deleteBook(@PathVariable("bookId") int bookId) {
         return bookService.deleteBook(bookId);
     }
 

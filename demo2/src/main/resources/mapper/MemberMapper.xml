@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.MemberMapper">
+
+    <insert id="insertMember" useGeneratedKeys="true">
+        INSERT INTO member(email, password, name, phone_number)
+            VALUE (#{member.email}, #{member.password}, #{member.name}, #{member.phoneNumber});
+    </insert>
+
+    <select id="getAllMembers" resultType="com.example.demo.entity.Member">
+        SELECT * FROM member;
+    </select>
+
+    <select id="getMemberById" resultType="com.example.demo.entity.Member">
+        SELECT * FROM member WHERE id = #{memberId};
+    </select>
+
+    <select id="getMemberByEmail" resultType="com.example.demo.entity.Member">
+        SELECT * FROM member WHERE email = #{email};
+    </select>
+
+    <update id="updateMember" useGeneratedKeys="true">
+        UPDATE member SET email = #{newMember.email}, password = #{newMember.password}
+                        , name = #{newMember.name}, phone_number = #{newMember.phoneNumber}
+        WHERE id = #{memberId};
+    </update>
+
+    <delete id="deleteMemberById">
+        DELETE FROM member WHERE id = #{memberId};
+    </delete>
+
+</mapper>

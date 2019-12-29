@@ -43,7 +43,7 @@ public class MemberController {
 
     //삭제
     @DeleteMapping("/{memberId}")
-    public Member deleteMembers(@PathVariable("memberId") int memberId) {
+    public boolean deleteMembers(@PathVariable("memberId") int memberId) {
         return memberService.deleteMemberById(memberId);
     }
 

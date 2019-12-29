@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.Book;
+import com.example.demo.mapper.BookMapper;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,52 +9,39 @@ import java.util.List;
 @Service
 public class BookService {
 
-    private List<Book> books = new ArrayList<>();
-    private int autoIncrement =1;
+    private final BookMapper bookMapper;
+
+    public BookService(BookMapper bookMapper) {
+        this.bookMapper = bookMapper;
+    }
+
 
     //도서추가
     public boolean addBook(Book book){
-        book.setId(autoIncrement++);
-        books.add(book);
+        bookMapper.insertBook(book);
         return true;
     }
 
     //모든 도서조회
     public List<Book> getAllBook(){
-        return books;
+        return bookMapper.getAllBooks();
     }
 
     //해당도서정보조회
     public Book getBookById(int bookId) {
-        for(Book book : books) {
-            if(bookId == book.getId()) {
-                return book;
-            }
-        }
-        return null;
+        return bookMapper.getBookById(bookId);
     }
 
     //도서수정
     public boolean putBook(int bookId, Book puttedBook){
-        for(Book book : books) {
-            if(bookId == book.getId()) {
-                book.setTitle(puttedBook.getTitle());
-                book.setAuthor(puttedBook.getAuthor());
-                return true;
-            }
-        }
-        return false;
+        bookMapper.updateBook(bookId, puttedBook);
+        return true;
     }
 
     //도서삭제
     public boolean deleteBook(int bookId){
-        for(Book book : books) {
-            if(bookId == book.getId()) {
-                books.remove(bookId);
-                return true;
-            }
-        }
-        return false;
+        bookMapper.deleteBook(bookId);
+        return true;
     }
 
 

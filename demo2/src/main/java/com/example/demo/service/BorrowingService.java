@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.entity.Book;
 import com.example.demo.entity.Borrowing;
 import org.springframework.stereotype.Service;
 
@@ -87,15 +88,17 @@ public class BorrowingService {
 
     //도서대출
     public boolean postBorrowingBooks(int memberId, int bookId) {
-        if (memberService.getMemberById(memberId) != null && bookService.getBookById(bookId) != null) {
+
+        Book book = bookService.getBookById(bookId);
+        if (memberService.getMemberById(memberId) != null && book != null) {
             Borrowing borrowing = new Borrowing();
             borrowing.setId(autoIncrement++);
             //isOut true로 바꿈 ******검사검사검사*********
-            bookService.getBookById(bookId).setOut(true);
+            book.setOut(true);
             //Member
             borrowing.setMember(memberService.getMemberById(memberId));
             //Book
-            borrowing.setBook(bookService.getBookById(bookId));
+            borrowing.setBook(book);
             //대출기간 7일##바꾸기!##******검사검사*********
             borrowing.setStartTime(today);
             cal.add(Calendar.DAY_OF_MONTH, 7);

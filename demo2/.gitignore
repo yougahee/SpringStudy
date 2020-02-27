@@ -5,8 +5,8 @@ build/
 !**/src/main/**
 !**/src/test/**
 
-##compiled source ##
-MybatisConfig.java
+##Config##
+config/
 
 ### STS ###
 .apt_generated

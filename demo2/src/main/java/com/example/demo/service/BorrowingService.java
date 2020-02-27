@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.entity.Book;
 import com.example.demo.entity.Borrowing;
+import com.example.demo.mapper.MemberMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -19,11 +20,11 @@ public class BorrowingService {
     Calendar cal = Calendar.getInstance();
 
     private int autoIncrement = 1;
-    private final MemberService memberService;
+    private final MemberMapper memberMapper;
     private final BookService bookService;
 
-    public BorrowingService(MemberService memberService, BookService bookService) {
-        this.memberService = memberService;
+    public BorrowingService(MemberMapper memberMapper, BookService bookService) {
+        this.memberMapper = memberMapper;
         this.bookService = bookService;
     }
 
@@ -90,13 +91,13 @@ public class BorrowingService {
     public boolean postBorrowingBooks(int memberId, int bookId) {
 
         Book book = bookService.getBookById(bookId);
-        if (memberService.getMemberById(memberId) != null && book != null) {
+        if (memberMapper.getMemberById(memberId) != null && book != null) {
             Borrowing borrowing = new Borrowing();
             borrowing.setId(autoIncrement++);
             //isOut true로 바꿈 ******검사검사검사*********
             book.setOut(true);
             //Member
-            borrowing.setMember(memberService.getMemberById(memberId));
+            borrowing.setMember(memberMapper.getMemberById(memberId));
             //Book
             borrowing.setBook(book);
             //대출기간 7일##바꾸기!##******검사검사*********

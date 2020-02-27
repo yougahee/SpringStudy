@@ -3,30 +3,25 @@
 
 <mapper namespace="com.example.demo.mapper.BorrowingMapper">
 
-    //다시
     <insert id="getAllBorrowingOption" useGeneratedKeys="true">
         INSERT INTO book(title, author, out)
             VALUE (#{book.title}, #{book.author}, #{book.out});
     </insert>
 
-    //다시
     <select id="getBookBorrow" resultType="com.example.demo.entity.Book">
         SELECT * FROM book WHERE id = #{bookId};
     </select>
 
-    //다시
     <update id="updateBorrowingBook" useGeneratedKeys="true">
         UPDATE book SET title = #{newBook.title}, author = #{newBook.author}
                         , out = #{newBook.out}}
         WHERE id = #{bookId};
     </update>
 
-    //다시
     <update id="patchReturnBooks" useGeneratedKeys="true">
         UPDATE borrowing SET
     </update>
 
-    //다시
     <update id="patchExtensionBooks" useGeneratedKeys="true">
         UPDATE borrowing SET
     </update>

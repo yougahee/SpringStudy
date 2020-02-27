@@ -1,9 +1,12 @@
 package com.example.demo.service;
 
+import com.example.demo.dto.response.DetailMemberResponseDTO;
+import com.example.demo.dto.response.SimpleMemberResponseDTO;
 import com.example.demo.entity.Member;
 import com.example.demo.mapper.MemberMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -22,13 +25,17 @@ public class MemberService {
     }
 
     //멤버 조회
-    public List<Member> getAllMembers() {
-        return memberMapper.getAllMembers();
+    public List<SimpleMemberResponseDTO> getAllMembers() {
+        List<SimpleMemberResponseDTO> addMemberList = new ArrayList<>();
+        for(Member member : memberMapper.getAllMembers()) {
+           addMemberList.add(SimpleMemberResponseDTO.of(member));
+        }
+        return addMemberList;
     }
 
     //멤버한명 반환
-    public Member getMemberById(int memberId) {
-        return memberMapper.getMemberById(memberId);
+    public DetailMemberResponseDTO getMemberById(int memberId) {
+        return DetailMemberResponseDTO.of(memberMapper.getMemberById(memberId));
     }
 
     //멤버 수정

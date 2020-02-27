@@ -13,14 +13,14 @@ public interface MemberMapper {
 
     public List<Member> getAllMembers();
 
-    public Member getMemberById(int memberId);
+    public Member getMemberById(@Param("memberId") int memberId);
 
-    public Member getMemberByEmail(String email);
+    public Member getMemberByEmail(@Param("email") String email);
 
-    public void insertMember(Member member);
+    public void insertMember( Member member);
 
     public void updateMember(@Param("memberID") int memberId, @Param("newMember") Member newMember);
 
-    public void deleteMemberById(int memberId);
+    public void deleteMemberById(@Param("memberId") int memberId);
 
 }

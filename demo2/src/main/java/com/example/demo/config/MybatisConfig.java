@@ -12,7 +12,8 @@ import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 import javax.sql.DataSource;
 
 /**
- * MyBatis 연결을 위한 Config 파일  *  * 모든 Config 파일은 보안에 취약하므로 gitignore를 꼭 합시다.  * 본 프로젝트에서는 코드를 보여주기위해 gitignore에 추가하지 않음.
+ * MyBatis 연결을 위한 Config 파일  *  * 모든 Config 파일은 보안에 취약하므로 gitignore를 꼭 합시다.
+ * * 본 프로젝트에서는 코드를 보여주기위해 gitignore에 추가하지 않음.
  */
 @Configuration
 @MapperScan("com.example.demo.mapper")

@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.response.DetailMemberResponseDTO;
+import com.example.demo.dto.response.SimpleMemberResponseDTO;
 import com.example.demo.entity.Member;
 import com.example.demo.service.MemberService;
 import org.springframework.web.bind.annotation.*;
@@ -25,13 +27,13 @@ public class MemberController {
 
     //멤버 조회
     @GetMapping
-    public List<Member> getAllMembers(){
+    public List<SimpleMemberResponseDTO> getAllMembers(){
         return memberService.getAllMembers();
     }
 
     //id에 맞는 멤버 조회 member가져오기
     @GetMapping("/{memberId}")
-    public Member getMemberById(@PathVariable("memberId") int memberId) {
+    public DetailMemberResponseDTO getMemberById(@PathVariable("memberId") int memberId) {
         return memberService.getMemberById(memberId);
     }
 
